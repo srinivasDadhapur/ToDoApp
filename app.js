@@ -17,6 +17,7 @@ mongoose.connection.on('error',()=>{
 })
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/todo',router);
 app.listen(8080,()=>{

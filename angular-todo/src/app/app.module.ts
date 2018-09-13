@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { TodoviewComponent } from './components/todoview/todoview.component';
+import { GetlistService } from './services/getlist.service';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -10,9 +12,10 @@ import { TodoviewComponent } from './components/todoview/todoview.component';
     TodoviewComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [GetlistService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
