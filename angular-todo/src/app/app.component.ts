@@ -10,7 +10,7 @@ import { isDefaultChangeDetectionStrategy } from '@angular/core/src/change_detec
 export class AppComponent {
 
   public list;
-  public data : data;
+  public todos=[];
 
   constructor(private getService: GetlistService){}
 
@@ -18,20 +18,14 @@ export class AppComponent {
   ngOnInit(){
 
   this.getService.getListofItems().subscribe(function(response){
-    const todos:data = response.data;
-    console.log(todos);
+    this.todos = (response.data);
+    console.log(this.todos);
     
   },error=>{
     console.log(error);
     return false;
   });
 }
-
-}
-
-export interface data{
-    todo:String;
-    status:String;
 
 }
 
