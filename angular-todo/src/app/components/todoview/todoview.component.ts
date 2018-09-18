@@ -17,16 +17,16 @@ export class TodoviewComponent implements OnInit {
   ngOnInit() {
 
     this.getListOfTodoItems();
-    
+
   }
 
   addTodoItems(todoitem,duedate){
     console.log(todoitem.value,duedate.value);
-    this.getService.addTodoItem(todoitem,duedate).subscribe((response)=>{
+    this.getService.addTodoItem(todoitem.value,duedate.value).subscribe((response)=>{
       console.log(response);
     },(error)=>{
       console.log(error);
-      
+
     });
     this.getListOfTodoItems();
   }
@@ -40,13 +40,13 @@ export class TodoviewComponent implements OnInit {
       // todoslist.forEach(element => {
         // console.log(this.todos);
       //   // this.todos.push(element);
-        
+
       // });
       // console.log(this.todos[0].status);
       // console.log(this.sdf);
       // return true;
       // console.log(this.todos);
-      
+
     },error=>{
       console.log(error);
       return false;
@@ -61,17 +61,17 @@ export class TodoviewComponent implements OnInit {
     else{
       checkValue.style.textDecoration='None'
     }
-    
+
   }
 
   removeElement(itemToRemove){
     this.getService.removeTodoItem(itemToRemove).subscribe((response)=>{
       console.log(response);
       this.getListOfTodoItems();
-      
+
     },(error)=>{
       console.log(error);
-      
+
     });
   }
 

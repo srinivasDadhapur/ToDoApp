@@ -31,7 +31,7 @@
     <span (click)="removeElement(item.todo)" class="badge badge-success badge-round">X</span>
 </li>
 </ul> -->
-  
+
 </div>
 <form>
 <div class="jumbotron">
@@ -39,8 +39,8 @@
  Todo item: <input type="text" #todoitem placeholder="watch star trek movie" class="list-group-item">
  Target date: <input type="text" #duedate placeholder="yyyy/mm/dd" class="list-group-item">
 </div>
-  
+
   <div align="center">
-  <button type="button" class="btn btn-primary" (click)="addTodoItems(todoitem,duedate)">add</button>
+  <button type="button" class="btn btn-primary" (click)="addTodoItems(todoitem,duedate);todoitem.value='';duedate.value='';">add</button>
 </div></div>
 </form>

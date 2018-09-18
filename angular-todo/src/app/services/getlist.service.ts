@@ -24,9 +24,7 @@ export class GetlistService {
   }
   addTodoItem(todoitem,duedate){
     let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this.http.post<any>('http://localhost:8080/todo/add',{"todo":todoitem,"dueDate":new Date(duedate)},{headers:headers}).pipe(catchError(this.errorHandler));
+    return this.http.post<any>('http://localhost:8080/todo/add',{"todo":todoitem,"dueDate":duedate},{headers:headers}).pipe(catchError(this.errorHandler));
   }
 
 }
-
-

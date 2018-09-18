@@ -11,12 +11,12 @@ router.get('/',(req,res)=>{
 router.post('/add',(req,res)=>{
     // const date = new Date(req.body.date).toDateString();
      const date = dateFormat(req.body.dueDate, "yyyy-mm-dd h:MM:ss")
-    console.log(req.body.todo+' '+ req.body.dueDate);
+    console.log(req.body.todo+' '+ date);
     let newtodoItem = new todolist({
         todo: req.body.todo,
         dueDate: date,
         status: 'done'
-    
+
     });
     todolist.addtoTodoList(newtodoItem,(error,todoitem)=>{
         if(error){
