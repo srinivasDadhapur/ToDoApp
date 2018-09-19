@@ -15,7 +15,7 @@ router.post('/add',(req,res)=>{
     let newtodoItem = new todolist({
         todo: req.body.todo,
         dueDate: date,
-        status: 'done'
+        status: ''
 
     });
     todolist.addtoTodoList(newtodoItem,(error,todoitem)=>{
