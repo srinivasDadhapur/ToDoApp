@@ -15,7 +15,7 @@ router.post('/add',(req,res)=>{
     let newtodoItem = new todolist({
         todo: req.body.todo,
         dueDate: date,
-        status: ''
+        status: 'todo'
 
     });
     todolist.addtoTodoList(newtodoItem,(error,todoitem)=>{
@@ -29,12 +29,15 @@ router.post('/add',(req,res)=>{
 });
 
 router.post('/update',(req,res)=>{
-    const todoitem = req.body.todo;
-    todolist.updateStatus({todo:todoitem},req.body.status,(err, status)=>{
+    const todoitem = req.body.todo.trim();
+    console.log(req.body.todo);
+    console.log(req.body.todo.trim());
+
+    todolist.updateStatus({'todo':todoitem},req.body.status,(err, status)=>{
         if(err){
             res.json({success:false,msg:err})
         }else{
-            res.json({success:true,msg:'update successful'});
+            res.json({success:true,msg:'Updated Successfully'});
         }
     });
 });
@@ -44,6 +47,7 @@ router.post('/getlist',(req,res)=>{
         if(error){
             res.json({success:flase,msg:'cannot get the list of users'});
         }else{
+
             res.json({success:true, data:list});
         }
     });

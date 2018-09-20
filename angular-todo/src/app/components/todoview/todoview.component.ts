@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetlistService } from '../../services/getlist.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,18 +31,39 @@ export class TodoviewComponent implements OnInit {
   }
 
 
-  disableElement(todo,dueDate,status){
-    todo.style.visibility='hidden';
-    dueDate.style.visibility='hidden';
+  disableElement(status){
+    // dueDate.style.visibility='hidden';
     status.style.visibility='hidden'
 
     
     
   }
 
-  enableEdit(todo,dueDate,status,editb,updateb){
-    todo.style.visibility= 'visible';
-    dueDate.style.visibility='visible';
+  disableElementUpdate(editStatus,editStatusinput,editButton,upodateButton){
+    editStatus.style.visibility = 'visible';
+    editStatusinput.style.visibility = 'hidden';
+    editButton.style.visibility = 'visible';
+    upodateButton.style.visibility = 'hidden';
+  }
+
+
+
+  updateStatus(todo,status){
+    this.getService.updateTodoStatus(todo.textContent,status.value).subscribe((response)=>{
+      if(response.success){
+        this.getListOfTodoItems()
+      }
+      
+    },(error)=>{
+      console.log(error);
+
+    });
+    
+  }
+
+  enableEdit(editStatus,status,editb,updateb){
+    // dueDate.style.visibility='visible';
+    editStatus.style.visibility = 'hidden';
     status.style.visibility='visible';
     editb.style.visibility = 'hidden';
     updateb.style.visibility = 'visible'
@@ -50,16 +72,21 @@ export class TodoviewComponent implements OnInit {
   addTodoItems(todoitem,duedate){
     console.log(todoitem.value,duedate.value);
     this.getService.addTodoItem(todoitem.value,duedate.value).subscribe((response)=>{
-      console.log(response);
+      if(response.success){
+        this.getListOfTodoItems();
+      }
     },(error)=>{
       console.log(error);
 
     });
-    this.getListOfTodoItems();
+    // this.getListOfTodoItems();
   }
 
   getListOfTodoItems(){
     this.getService.getListofItems().subscribe((response)=>{
+      this.todosplanned=[];
+      this.todospending = [];
+      this.todosdone = [];
       this.todos = response.data;
       // this.list = response.data;
       // console.log(todoslist[0]);
@@ -103,9 +130,9 @@ export class TodoviewComponent implements OnInit {
 
   removeElement(itemToRemove){
     this.getService.removeTodoItem(itemToRemove).subscribe((response)=>{
-      console.log(response);
+      if(response.success){
       this.getListOfTodoItems();
-
+    }
     },(error)=>{
       console.log(error);
 

@@ -17,21 +17,20 @@
         <tbody>
             <tr *ngFor="let item of todospending; let i = index ">
               <th scope="row">{{i+1}}</th>
-              <td><span #edittodoItem>{{item.todo}}</span>
-                  <input [style.visibility]="cssvisibility"  #editodoInput type="text" value="{{edittodoItem.textContent}}" placeholder="watch star trek movie" class="list-group-item">
+              <td><span #todoItem> {{item.todo}}</span>
               </td>
               <td><span #editStatus>{{item.status}} </span>
                   <select [style.visibility]="cssvisibility" type="text"  #editStatusinput  placeholder="watch star trek movie" class="list-group-item">
+                    <option value="todo">Todo</option>
                     <option value="done">Done</option>
                     <option value="planned">Planned</option>
                   </select>
               </td>
-              <td><span #editDueDate>{{item.dueDate}}</span>
-                  <input  [style.visibility]="cssvisibility" value="{{editDueDate.textContent}}" type="text" #editDueDateinput placeholder="watch star trek movie" class="list-group-item">
+              <td><span>{{item.dueDate}}</span>
               </td>
               <td>
-                <button #editButton type="button" (click)="disableElement(edittodoItem,editStatus,editDueDate); enableEdit(editodoInput,editStatusinput,editDueDateinput,editButton,updateButton) " class="hoverc badge badge-success badge-round">edit</button>
-                <button #updateButton [style.visibility] = "cssvisibility"  type="button" class="hoverc badge badge-success badge-round">update</button>
+                <button #editButton type="button" (click)="enableEdit(editStatus,editStatusinput,editButton,updateButton) " class="hoverc badge badge-success badge-round">edit</button>
+                <button #updateButton [style.visibility] = "cssvisibility"  type="button" class="hoverc badge badge-success badge-round" (click)="updateStatus(todoItem,editStatusinput);disableElementUpdate(editStatus,editStatusinput,editButton,updateButton);">update</button>
               </td>
             </tr>
             <tr>
@@ -58,27 +57,38 @@
 
   <table class="table  table-hover">
 
-      <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Todo</th>
-            <th scope="col">status</th>
-            <th scope="col">Target</th>
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Todo</th>
+          <th scope="col">status</th>
+          <th scope="col">Target</th>
+        </tr>
+      </thead>
+
+      <tbody>
+          <tr *ngFor="let item of todosplanned; let i = index ">
+            <th scope="row">{{i+1}}</th>
+            <td><span #todoItem> {{item.todo}}</span>
+            </td>
+            <td><span #editStatus>{{item.status}} </span>
+                <select [style.visibility]="cssvisibility" type="text"  #editStatusinput  placeholder="watch star trek movie" class="list-group-item">
+                  <option value="todo">Todo</option>
+                  <option value="done">Done</option>
+                  <option value="planned">Planned</option>
+                </select>
+            </td>
+            <td><span>{{item.dueDate}}</span>
+            </td>
+            <td>
+              <button #editButton type="button" (click)="enableEdit(editStatus,editStatusinput,editButton,updateButton) " class="hoverc badge badge-success badge-round">edit</button>
+              <button #updateButton [style.visibility] = "cssvisibility"  type="button" class="hoverc badge badge-success badge-round" (click)="updateStatus(todoItem,editStatusinput);disableElementUpdate(editStatus,editStatusinput,editButton,updateButton);">update</button>
+            </td>
           </tr>
-        </thead>
-
-        <tbody>
-            <tr *ngFor="let item of todosplanned; let i = index ">
-              <th scope="row">{{i+1}}</th>
-              <td>{{item.todo}}</td>
-              <td>{{item.status}}</td>
-              <td>{{item.dueDate}}</td>
-              <td><span (click)="removeElement(item.todo)" class="hoverc badge badge-success badge-round" >X</span></td>
-            </tr>
-          </tbody>
+        </tbody>
 
 
-  </table>
+</table>
 
 
 
@@ -97,11 +107,11 @@
 
         <tbody>
             <tr *ngFor="let item of todosdone; let i = index ">
-              <th scope="row">{{i+1}}</th>
-              <td>{{item.todo}}</td>
-              <td>{{item.status}}</td>
-              <td>{{item.dueDate}}</td>
-              <td><span (click)="removeElement(item.todo)" class="badge badge-success badge-round" >done</span></td>
+              <th scope="row"><s>{{i+1}}</s></th>
+              <td><s>{{item.todo}}</s></td>
+              <td><s>{{item.status}}</s></td>
+              <td><s>{{item.dueDate}}</s></td>
+              <td><span class="badge badge-success badge-round" >done</span></td>
             </tr>
           </tbody>
 

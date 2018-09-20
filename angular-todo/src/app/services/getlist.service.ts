@@ -27,4 +27,10 @@ export class GetlistService {
     return this.http.post<any>('http://localhost:8080/todo/add',{"todo":todoitem,"dueDate":duedate},{headers:headers}).pipe(catchError(this.errorHandler));
   }
 
+  updateTodoStatus(todoitem,todostatus){
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    console.log(todoitem,todostatus);
+    return this.http.post<any>('http://localhost:8080/todo/update',{"todo":todoitem,"status":todostatus},{headers:headers}).pipe(catchError(this.errorHandler));
+  }
+
 }

@@ -37,6 +37,6 @@ module.exports.removeTodoItem = (todoItem,callback)=>{
 
 //update db
 
-module.exports.updateStatus = (todoItem,status, callback)=>{
-    todolist.updateOne(todoItem,{status:status},callback);
+module.exports.updateStatus = (todoItem,updatestatus, callback)=>{
+    todolist.updateOne(todoItem,{status:updatestatus},callback);
 }
