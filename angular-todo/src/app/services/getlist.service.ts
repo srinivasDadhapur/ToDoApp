@@ -12,7 +12,7 @@ export class GetlistService {
 
   getListofItems(){
     let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this.http.post<any>('http://localhost:8080/todo/getlist',{},{headers:headers}).pipe(catchError(this.errorHandler));
+    return this.http.get<any>('http://localhost:8080/todo/getlist').pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error: HttpErrorResponse){
@@ -30,7 +30,7 @@ export class GetlistService {
   updateTodoStatus(todoitem,todostatus){
     let headers = new HttpHeaders().set('Content-Type','application/json');
     console.log(todoitem,todostatus);
-    return this.http.post<any>('http://localhost:8080/todo/update',{"todo":todoitem,"status":todostatus},{headers:headers}).pipe(catchError(this.errorHandler));
+    return this.http.put<any>('http://localhost:8080/todo/update',{"todo":todoitem,"status":todostatus},{headers:headers}).pipe(catchError(this.errorHandler));
   }
 
 }

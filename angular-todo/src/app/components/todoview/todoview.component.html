@@ -36,11 +36,12 @@
             <tr>
                 <th></th>
                 <td scope="col">
-                  <input type="text" #todoitem placeholder="watch star trek movie" class="list-group-item">
+                  <input type="text" #todoitem placeholder="watch star trek movie" class="list-group-item" patter="[a-zA-Z0-9 ]">
                 </td>
                 <td scope="col"></td>
                 <td scope="col">
-                  <input type="text" #duedate placeholder="yyyy/mm/dd" class="list-group-item">
+                  <input type="text" #duedate placeholder="mm/dd/yyyy" pattern="\d\d\/\d\d\/\d\d\d\d" class="list-group-item">
+                  <small *ngIf="!validString || !valiateDate" class="text-danger">date is wrong</small>
                 </td>
                 <td>
                   <button type="button" class="hoverc badge badge-success badge-round" (click)="addTodoItems(todoitem,duedate);todoitem.value='';duedate.value='';">+</button>
@@ -51,7 +52,8 @@
 
   </table>
 
-
+</div>
+<div class="jumbotron">
 
   <h2>Planned</h2>
 
@@ -89,8 +91,8 @@
 
 
 </table>
-
-
+</div>
+<div class="jumbotron">
 
   <h2>Done</h2>
 
@@ -126,4 +128,3 @@
 </ul> -->
 
 </div>
-

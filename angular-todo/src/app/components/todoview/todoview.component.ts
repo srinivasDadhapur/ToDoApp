@@ -18,6 +18,8 @@ export class TodoviewComponent implements OnInit {
   public checkSelected=true;
   public editnotEnabled=true;
   public cssvisibility = 'hidden'
+  public valiateDate=true;
+  public validString=true;
  
 
   
@@ -71,14 +73,24 @@ export class TodoviewComponent implements OnInit {
 
   addTodoItems(todoitem,duedate){
     console.log(todoitem.value,duedate.value);
+    if(todoitem.value=='' || duedate.value==''){
+      this.valiateDate = false;
+      this.validString = false;
+      
+    }
+    else{
+    this.valiateDate = true;
+    this.validString = true;
     this.getService.addTodoItem(todoitem.value,duedate.value).subscribe((response)=>{
       if(response.success){
         this.getListOfTodoItems();
       }
     },(error)=>{
-      console.log(error);
+      this.valiateDate = false;
+      this.validString = false;
 
     });
+  }
     // this.getListOfTodoItems();
   }
 
@@ -132,6 +144,9 @@ export class TodoviewComponent implements OnInit {
     this.getService.removeTodoItem(itemToRemove).subscribe((response)=>{
       if(response.success){
       this.getListOfTodoItems();
+    }else{
+      console.log(response.msg);
+      
     }
     },(error)=>{
       console.log(error);
