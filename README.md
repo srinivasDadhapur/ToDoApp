@@ -1,3 +1,3 @@
 # ToDoApp
 
-a simple web todo app written in nodejs , angular, mongo
+a simple web todo app written using nodejs , angular, mongodb
